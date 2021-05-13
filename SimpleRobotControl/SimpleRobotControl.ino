@@ -52,11 +52,17 @@ void loop()
   //Serial.println("FRENTE");
   digitalWrite(AIN1,HIGH);
   digitalWrite(AIN2,LOW);
-  analogWrite(pwmChannelA, robotSpeed);
+  ledcWrite(pwmChannelA, robotSpeed);
   
   digitalWrite(BIN1, HIGH);
   digitalWrite(BIN2, LOW);       
-  analogWrite(pwmChannelB , robotSpeed);   
+  ledcWrite(pwmChannelB , robotSpeed);  
+
+  /*
+  digitalWrite(LED, HIGH);
+  delay(1500);
+  digitalWrite(LED, LOW);
+  delay(1500); */
 }
 
 
@@ -68,11 +74,11 @@ void moveControl(int x, int y)
         Serial.println("FRENTE");
         digitalWrite(AIN1,LOW);
         digitalWrite(AIN2,HIGH);
-        analogWrite(PWMA, robotSpeed);
+        ledcWrite(PWMA, robotSpeed);
         
         digitalWrite(BIN1, LOW);
         digitalWrite(BIN2,HIGH);       
-        analogWrite(PWMB , robotSpeed);
+        ledcWrite(PWMB , robotSpeed);
     }
 
 
@@ -82,12 +88,12 @@ void moveControl(int x, int y)
         Serial.println("DIREITA");
         digitalWrite(AIN1, LOW);
         digitalWrite(AIN2, LOW);
-        analogWrite(PWMA,robotSpeed);
+        ledcWrite(PWMA,robotSpeed);
        
         
         digitalWrite(BIN1, LOW);
         digitalWrite(BIN2,HIGH);   
-        analogWrite(PWMB ,robotSpeed);
+        ledcWrite(PWMB ,robotSpeed);
     }
 //Move  Left
     else if(x <= 450 && (y >= 450 && y<=650))
@@ -95,11 +101,11 @@ void moveControl(int x, int y)
         Serial.println("ESQUERDA");
         digitalWrite(AIN1,LOW);
         digitalWrite(AIN2,HIGH);
-        analogWrite(PWMA,robotSpeed);
+        ledcWrite(PWMA,robotSpeed);
         
         digitalWrite(BIN1, LOW);
         digitalWrite(BIN2,LOW);      
-        analogWrite(PWMB ,robotSpeed);
+        ledcWrite(PWMB ,robotSpeed);
     }
 //Move Backward
     else if(y <= 450 && x >= 400 && x <= 600)
@@ -107,20 +113,20 @@ void moveControl(int x, int y)
         Serial.println("TRAS");
         digitalWrite(AIN1, HIGH);
         digitalWrite(AIN2,LOW);
-        analogWrite(PWMA,robotSpeed);
+        ledcWrite(PWMA,robotSpeed);
         
         digitalWrite(BIN1, HIGH);
         digitalWrite(BIN2,LOW);  
-        analogWrite(PWMB ,robotSpeed);
+        ledcWrite(PWMB ,robotSpeed);
     }
     else{
         Serial.println("PARADO");
         digitalWrite(AIN1, LOW);
         digitalWrite(AIN2, LOW);        
-        analogWrite(PWMA,nospeed);
+        ledcWrite(PWMA, nospeed);
 
         digitalWrite(BIN1, LOW);
         digitalWrite(BIN2, LOW); 
-        analogWrite(PWMB , nospeed);
+        ledcWrite(PWMB , nospeed);
     }
 }
